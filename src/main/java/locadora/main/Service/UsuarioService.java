@@ -4,9 +4,9 @@
  */
 package locadora.main.Service;
 
-
-import locadora.main.Model.ItemDTO;
-import locadora.main.Repository.ItemDAO;
+import java.util.List;
+import locadora.main.Model.UsuarioDTO;
+import locadora.main.Repository.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
  * @author Aluno
  */
 @Service
-public class ItemService {
- 
-    @Autowired
-    private ItemDAO repository;
+public class UsuarioService {
     
-    private void adicionar(ItemDTO item){
-        repository.adicionar(item);
+    @Autowired
+    private UsuarioDAO repository;
+    
+    public List<UsuarioDTO> lertodos(){
+        return repository.lerTodos();
     }
     
     
