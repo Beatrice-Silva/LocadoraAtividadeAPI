@@ -7,6 +7,7 @@ package locadora.main.Controller;
 import locadora.main.Model.ItemDTO;
 import locadora.main.Service.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  *
  * @author Aluno
  */
+@Controller
 public class ItemController {
     
     @Autowired
