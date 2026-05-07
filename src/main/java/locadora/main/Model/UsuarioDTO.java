@@ -9,8 +9,7 @@ package locadora.main.Model;
  * @author Aluno
  */
 public class UsuarioDTO {
-    
-    private Integer id;
+
     private String nome;
     private String email;
     private String senha;
@@ -18,20 +17,14 @@ public class UsuarioDTO {
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(Integer id, String nome, String email, String senha) {
-        this.id = id;
+    public UsuarioDTO( String nome, String email, String senha) {
+       
         this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
+    
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;

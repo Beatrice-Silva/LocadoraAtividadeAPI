@@ -29,7 +29,7 @@ public class UsuarioDAO {
 
             while (rs.next()) {
                 UsuarioDTO user = new UsuarioDTO(
-                    rs.getInt("id"),
+                    
                     rs.getString("nome"),
                     rs.getString("email"),
                     rs.getString("senha")
@@ -50,32 +50,47 @@ public class UsuarioDAO {
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getSenha());
             stmt.executeUpdate();
+            
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
     
-    public UsuarioDTO logar(String email, String senha) {
+    public UsuarioDTO logar(String nome, String email) {
         try (Connection conn = Conexao.conectar()) {
             String sql = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, email);
-            stmt.setString(2, senha);
+            stmt.setString(1, nome);
+            stmt.setString(2, email);
+            
+            
             ResultSet rs = stmt.executeQuery();
-
             if (rs.next()) {
-                return new UsuarioDTO(
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getString("email"),
-                    rs.getString("senha")
-                );
+                    rs.getString("nome");
+                    rs.getString("email");
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null; 
     }
+    
+    public void deletar(int id){
+        try{
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM usuario WHERE id = ?");
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        }catch(SQLException e ){
+        e.printStackTrace();
+        }
+    }
+
+    
     
     
 }
