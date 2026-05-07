@@ -34,17 +34,10 @@ public class UsuarioController {
  
     @Autowired
     private UsuarioService service;
-    private String secret;
     
     @GetMapping
     public List<UsuarioDTO> getUsuarios() {
         return service.listar();
-    }
-    
-    @PostMapping("/cadastrar")
-    public String cadastrar(@RequestBody UsuarioDTO usuario) {
-        service.salvar(usuario);
-        return "Usuario cadastrado com sucesso";
     }
     
     @DeleteMapping("/{id}")
@@ -64,14 +57,20 @@ public class UsuarioController {
         return "E-mail ou senha incorretos";
     }
     
-    @GetMapping("/tokengerado")
-    public String testeToken() {
-        return service.gerarToken();
+    //@GetMapping("/tokengerado")
+    // public String testeToken() {
+    //    return service.gerarToken();
+    //}
+    
+    @PostMapping("/cadastrar")
+    public String cadastrar(@RequestBody UsuarioDTO usuario) {
+      //  service.salvar(usuario);
+        return "Usuario cadastrado com sucesso";
     }
     
-    @PostMapping("/validartoken")
-    public String validarToken(@RequestParam String token) {
-        
+    /*
+    @PostMapping("/cadastrarCOMtoken")
+    public String cadastrarToken(@RequestParam UsuarioDTO usuario, String token) {
         if (service.validarToken(token)) {
         
             Claims claims = service.extrairClaims(token);
@@ -79,9 +78,12 @@ public class UsuarioController {
                    ", Emitido em: " + claims.getIssuedAt() + 
                    ", Expira em: " + claims.getExpiration();
         } else {
-            return "Token inválido ou expirado!";
+            return "Erro ao gerar token para cadastro";
         }
+        
+        service.gerarTokenCadastrar(usuario);
+        return "Casdastro COM token gerado com sucesso!";
     }
-    
+    */
     
 }

@@ -62,7 +62,7 @@ public class UsuarioDAO {
             String sql = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, nome);
-            stmt.setString(2, email);
+            
             
             
             ResultSet rs = stmt.executeQuery();

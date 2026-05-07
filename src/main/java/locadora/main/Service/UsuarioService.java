@@ -43,7 +43,6 @@ public class UsuarioService {
     //    repository.cadastrar(usuario);
     //}
     
-    
     public UsuarioDTO autenticar(String email, String senha){
         return repository.logar(email, senha);
     }
@@ -54,9 +53,9 @@ public class UsuarioService {
     
     public String gerarTokenCadastrar(UsuarioDTO usuario) {
         return Jwts.builder()
-                .subject("")
+                .subject("locadora")
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000000))
+                .expiration(new Date(System.currentTimeMillis() + 7200000))
                 .signWith(getSignKey())
                 .compact();
         //repository.cadastrar(usuario);
