@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `locadora_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE  IF NOT EXISTS `locadora_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `locadora_db`;
--- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.44, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: locadora_db
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.32-MariaDB
+-- Server version	8.0.44
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,15 +25,15 @@ DROP TABLE IF EXISTS `item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item` (
-  `iditem` int(5) NOT NULL AUTO_INCREMENT,
-  `idlocaul` int(5) NOT NULL,
-  `nomeitem` varchar(45) NOT NULL,
+  `iditem` int NOT NULL AUTO_INCREMENT,
+  `idlocaul` int NOT NULL,
+  `nomeitem` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `preco` decimal(10,2) NOT NULL,
-  `colecao` varchar(45) NOT NULL,
+  `colecao` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`iditem`),
   KEY `idlocaul` (`idlocaul`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`idlocaul`) REFERENCES `locaul` (`idlocaul`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (7,2,'23.45',0.00,'Super lançamento'),(8,2,'20',0.00,'Infantil'),(9,3,'20',0.00,'Super lançamento'),(10,1,'20.02',0.00,'Super lançamento'),(11,2,'20.34',0.00,'Infantil'),(12,1,'20.36',0.00,'Ação');
+INSERT INTO `item` VALUES (1,1,'Projetor 4K',3500.00,'Equipamentos Audiovisuais'),(2,2,'Cadeira Ergonômica',850.50,'Mobiliário 2026'),(3,3,'Ar Condicionado 12k BTUs',2100.00,'Climatização');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,11 +54,11 @@ DROP TABLE IF EXISTS `locaul`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `locaul` (
-  `idlocaul` int(5) NOT NULL,
-  `nomeitem` varchar(45) NOT NULL,
-  `capacmax` int(5) NOT NULL,
+  `idlocaul` int NOT NULL AUTO_INCREMENT,
+  `nomeitem` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `capacmax` int NOT NULL,
   PRIMARY KEY (`idlocaul`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,8 +67,34 @@ CREATE TABLE `locaul` (
 
 LOCK TABLES `locaul` WRITE;
 /*!40000 ALTER TABLE `locaul` DISABLE KEYS */;
-INSERT INTO `locaul` VALUES (1,'disco1',5),(2,'disco2',5),(3,'disc3',4),(4,'disco4',10),(5,'disco5',10),(6,'disco6',12);
+INSERT INTO `locaul` VALUES (1,'Auditório Principal',250),(2,'Laboratório de Informática',35),(3,'Sala de Reuniões Executiva',12);
 /*!40000 ALTER TABLE `locaul` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `senha` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'Ana Paula Silva','ana.paula@email.com','senhaForte123'),(2,'Marcos Oliveira','marcos.oliveira@provedor.com','m@rcos#2026'),(3,'Beatriz Santos','beatriz.santos@webmail.com','seguranca_99');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -80,4 +106,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-05 17:29:12
+-- Dump completed on 2026-05-07  8:52:12
