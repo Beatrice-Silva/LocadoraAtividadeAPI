@@ -33,7 +33,6 @@ public class LocalDAO {
             while(rs.next()){
                 LocalDTO local = new LocalDTO();
                 local.setIdlocaul(rs.getInt("idlocaul"));
-                local.setIditem(rs.getInt("iditem"));
                 local.setNomeitem(rs.getString("nomeitem"));
                 local.setCapacmax(rs.getInt("capacmax"));
                 dados.add(local);

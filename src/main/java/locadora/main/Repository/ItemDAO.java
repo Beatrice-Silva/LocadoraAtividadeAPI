@@ -21,12 +21,13 @@ public class ItemDAO {
         try{
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;
-            stmt = conn.prepareStatement("INSERT INTO ite (nomeitem, idlocal, preco, colecao)"
+            stmt = conn.prepareStatement("INSERT INTO itens (nomeitem, idlocal, preco, colecao)"
                     + "VALUES (?,?,?,?)");
             
             stmt.setString(1, item.getNomeitem());
-            stmt.setDouble(2, item.getPreco());
-            stmt.setString(3, item.getColecao());
+            stmt.setInt(2, item.getIdlocaul());
+            stmt.setDouble(3, item.getPreco());
+            stmt.setString(4, item.getColecao());
             
             stmt.executeUpdate();
         }catch(SQLException e){

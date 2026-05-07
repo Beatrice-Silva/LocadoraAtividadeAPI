@@ -4,30 +4,28 @@
  */
 package locadora.main.Controller;
 
-import ch.qos.logback.core.model.Model;
+
 import java.util.List;
 import locadora.main.Model.LocalDTO;
 import locadora.main.Service.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author Aluno
- */
-@Controller
+
+@RestController
+@RequestMapping("/locais")
 public class LocalController {
     
     @Autowired
     private LocalService service;
     
     @GetMapping("/prateleiras")
-    public String getLocal(Model model){
-        List<LocalDTO> lista = service.lerTodos();
-        model.addAttribute("lista", lista);
-        return "local";
-        
+    public List<LocalDTO> getLocal(){
+        return service.lerTodos();
     }
     
 }

@@ -20,9 +20,19 @@ public class UsuarioService {
     @Autowired
     private UsuarioDAO repository;
     
-    public List<UsuarioDTO> lertodos(){
+    public List<UsuarioDTO> listar(){
         return repository.lerTodos();
     }
+    
+    public void salvar(UsuarioDTO user){
+       repository.cadastrar(user);
+    }
+    
+    
+    public UsuarioDTO autenticar(String email, String senha){
+        return repository.logar(email, senha);
+    }
+    
     
     
     

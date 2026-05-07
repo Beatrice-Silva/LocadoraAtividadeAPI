@@ -20,7 +20,7 @@ public class ItemService {
     @Autowired
     private ItemDAO repository;
     
-    private void adicionar(ItemDTO item){
+    public void adicionar(ItemDTO item){
         repository.adicionar(item);
     }
     

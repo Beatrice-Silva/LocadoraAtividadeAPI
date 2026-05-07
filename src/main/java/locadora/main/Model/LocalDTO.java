@@ -11,16 +11,14 @@ package locadora.main.Model;
 public class LocalDTO {
     
     private int idlocaul;
-    private int iditem;
     private String nomeitem;
     private int capacmax;
 
     public LocalDTO() {
     }
 
-    public LocalDTO(int idlocaul, int iditem, String nomeitem, int capacmax) {
+    public LocalDTO(int idlocaul,String nomeitem, int capacmax) {
         this.idlocaul = idlocaul;
-        this.iditem = iditem;
         this.nomeitem = nomeitem;
         this.capacmax = capacmax;
     }
@@ -33,15 +31,7 @@ public class LocalDTO {
         this.idlocaul = idlocaul;
     }
 
-    public int getIditem() {
-        return iditem;
-    }
-
-    public void setIditem(int iditem) {
-        this.iditem = iditem;
-    }
-
-    public String getNomeitem() {
+     public String getNomeitem() {
         return nomeitem;
     }
 
