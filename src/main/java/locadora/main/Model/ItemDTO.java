@@ -10,7 +10,7 @@ package locadora.main.Model;
  */
 public class ItemDTO {
 
-    private int iditem;
+    private Integer iditem;
     private int idlocaul;
     private String nomeitem;
     private Double preco;
@@ -19,7 +19,7 @@ public class ItemDTO {
     public ItemDTO() {
     }
 
-    public ItemDTO(int iditem, int idlocaul, String nomeitem, Double preco, String colecao) {
+    public ItemDTO(Integer iditem, int idlocaul, String nomeitem, Double preco, String colecao) {
         this.iditem = iditem;
         this.idlocaul = idlocaul;
         this.nomeitem = nomeitem;
@@ -27,11 +27,11 @@ public class ItemDTO {
         this.colecao = colecao;
     }
 
-    public int getIditem() {
+    public Integer getIditem() {
         return iditem;
     }
 
-    public void setIditem(int iditem) {
+    public void setIditem(Integer iditem) {
         this.iditem = iditem;
     }
 
@@ -66,7 +66,7 @@ public class ItemDTO {
     public void setColecao(String colecao) {
         this.colecao = colecao;
     }
-    
-    
+
+  
 
 }

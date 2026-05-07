@@ -10,7 +10,7 @@ package locadora.main.Model;
  */
 public class LocalDTO {
     
-    private int idlocaul;
+    private Integer idlocaul;
     private String nomeitem;
     private int capacmax;
 
