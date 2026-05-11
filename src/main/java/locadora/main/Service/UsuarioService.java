@@ -11,6 +11,7 @@ import io.jsonwebtoken.security.Keys;
 import java.util.Date;
 import java.util.List;
 import javax.crypto.SecretKey;
+import locadora.main.Model.LogarDTO;
 import locadora.main.Model.UsuarioDTO;
 import locadora.main.Repository.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,49 +27,25 @@ public class UsuarioService {
     
     @Autowired
     private UsuarioDAO repository;
-      
-    @Value("${api.security.token.secret}")
-    private String secret;
-  
-    private SecretKey getSignKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(this.secret);
-        return Keys.hmacShaKeyFor(keyBytes);
+ 
+    public void cadastrar(UsuarioDTO usuario){
+        repository.cadastrar(usuario);
     }
     
-    public List<UsuarioDTO> listar(){
-        return repository.lerTodos();
-    }
-    
-    //public void salvar(UsuarioDTO usuario){
-    //    repository.cadastrar(usuario);
-    //}
-    
-    public UsuarioDTO autenticar(String email, String senha){
+    public LogarDTO autenticar(String email, String senha){
         return repository.logar(email, senha);
     }
     
+    /*
+    public List<UsuarioDTO> listar(){
+        return repository.lerTodos();
+    }
+    */
+    /*
     public void deletarUsuario(int id){
         repository.deletar(id);
     }
-    
-    public String gerarTokenCadastrar(UsuarioDTO usuario) {
-        return Jwts.builder()
-                .subject("locadora")
-                .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 7200000))
-                .signWith(getSignKey())
-                .compact();
-        //repository.cadastrar(usuario);
-        
-    }
-    
-       public Claims extrairClaims(String token) {
-        return Jwts.parser()
-                .setSigningKey(getSignKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
-    }
+    */
     
     
     

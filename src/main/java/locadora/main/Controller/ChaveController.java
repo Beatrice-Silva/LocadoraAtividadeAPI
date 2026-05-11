@@ -5,15 +5,11 @@
 package locadora.main.Controller;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
-import java.util.List;
-import javax.crypto.SecretKey;
+import locadora.main.Model.LogarDTO;
 import locadora.main.Model.UsuarioDTO;
+import locadora.main.Service.TokenService;
 import locadora.main.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,63 +23,53 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Aluno
  */
-
 @RestController
-@RequestMapping("/api/usuarios")
-public class UsuarioController {
- 
+@RequestMapping("api/chave")
+public class ChaveController {
+    
     @Autowired
-    private UsuarioService service;
+    private TokenService service;
     
-    @GetMapping
-    public List<UsuarioDTO> getUsuarios() {
-        return service.listar();
-    }
+    @Autowired
+    private UsuarioService serviceUsuario;
     
-    @DeleteMapping("/{id}")
-    public String deletar(@PathVariable int id){
-        service.deletarUsuario(id);
-        return "Usuário deletado com sucesso!";
-    }
     
-    @PostMapping("/login")
-    public Object login(@RequestBody UsuarioDTO user) {
-        UsuarioDTO usuarioLogado = service.autenticar(user.getEmail(), user.getSenha());
-        
-        
-        if(user != null){
-           return user;
+    @PostMapping("/logar")
+    public String login(@RequestBody LogarDTO user) {
+        LogarDTO usuarioLogado = serviceUsuario.autenticar(user.getEmail(), user.getSenha());
+        if(user.getEmail() != null){
+           //return service.gerarToken(usuario.getEmail();
         }
         return "E-mail ou senha incorretos";
     }
     
-    //@GetMapping("/tokengerado")
-    // public String testeToken() {
-    //    return service.gerarToken();
-    //}
-    
+
     @PostMapping("/cadastrar")
     public String cadastrar(@RequestBody UsuarioDTO usuario) {
-      //  service.salvar(usuario);
+        serviceUsuario.cadastrar(usuario);
         return "Usuario cadastrado com sucesso";
     }
     
-    /*
-    @PostMapping("/cadastrarCOMtoken")
-    public String cadastrarToken(@RequestParam UsuarioDTO usuario, String token) {
+    
+    @PostMapping("/validar-token")
+    public String validarToken(@RequestParam String token) {
         if (service.validarToken(token)) {
-        
             Claims claims = service.extrairClaims(token);
             return "Token válido! Subject: " + claims.getSubject() + 
                    ", Emitido em: " + claims.getIssuedAt() + 
                    ", Expira em: " + claims.getExpiration();
         } else {
-            return "Erro ao gerar token para cadastro";
+            return "Token inválido ou expirado!";
         }
-        
-        service.gerarTokenCadastrar(usuario);
-        return "Casdastro COM token gerado com sucesso!";
+    }
+   
+    /*
+    @DeleteMapping("/{id}")
+    public String deletar(@PathVariable int id){
+        serviceUsuario.deletarUsuario(id);
+        return "Usuário deletado com sucesso!";
     }
     */
     
 }
+

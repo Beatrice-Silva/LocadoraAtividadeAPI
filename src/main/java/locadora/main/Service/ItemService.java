@@ -5,6 +5,7 @@
 package locadora.main.Service;
 
 
+import java.util.List;
 import locadora.main.Model.ItemDTO;
 import locadora.main.Repository.ItemDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,16 @@ public class ItemService {
     public void adicionar(ItemDTO item){
         repository.adicionar(item);
     }
+    
+    public List<ItemDTO> lerTodosItens(){
+        return repository.lerTodosItens();
+    }
+    
+    public void deletarItem(int id){
+        repository.deletar(id);
+    }
+    
+    
     
     
     

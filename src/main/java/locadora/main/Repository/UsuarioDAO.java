@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import locadora.main.Model.LogarDTO;
 import locadora.main.Model.UsuarioDTO;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +20,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class UsuarioDAO {
+    
+    /*
+    
     
     public List<UsuarioDTO> lerTodos() {
         List<UsuarioDTO> dados = new ArrayList<>();
@@ -41,6 +45,7 @@ public class UsuarioDAO {
         }
         return dados;
     }
+    */
     
     public void cadastrar(UsuarioDTO user) {
         try (Connection conn = Conexao.conectar()) {
@@ -57,12 +62,12 @@ public class UsuarioDAO {
         }
     }
     
-    public UsuarioDTO logar(String nome, String email) {
+    public LogarDTO logar(String nome, String email) {
         try (Connection conn = Conexao.conectar()) {
             String sql = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, nome);
-            
+            stmt.setString(2, email);
             
             
             ResultSet rs = stmt.executeQuery();
@@ -77,6 +82,7 @@ public class UsuarioDAO {
         return null; 
     }
     
+    /*
     public void deletar(int id){
         try{
             Connection conn = Conexao.conectar();
@@ -90,7 +96,7 @@ public class UsuarioDAO {
         }
     }
 
-    
+    */
     
     
 }
